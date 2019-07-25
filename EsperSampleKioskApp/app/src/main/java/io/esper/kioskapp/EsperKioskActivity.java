@@ -79,11 +79,6 @@ public class EsperKioskActivity extends AppCompatActivity {
         // set the main content view
         setContentView(R.layout.activity_fullscreen);
 
-        // add a touch-handler to detect when the user starts to interact with the activity. this
-        // will be used to hider the navigation bars in case the are visible
-        LinearLayout linLayout = findViewById(R.id.parentFullScreenLayout);
-        linLayout.setOnTouchListener(mDelayHideTouchListener);
-
         // load up Andi!
         ImageView andiLogoImageView = findViewById(R.id.andiLogoImageView);
         Bitmap bm = getAndiFromAssets();
@@ -125,12 +120,12 @@ public class EsperKioskActivity extends AppCompatActivity {
         // the case, one has to make this app an admin which means going through a lot of hoops.
         // esper takes care of this for you!
         if (mDevicePolicyManager != null && mDevicePolicyManager.isLockTaskPermitted(getPackageName())) {
-
             // onResume() might be called multiple times, so before the screen is pinned, this logic
             // checks if it's already pinned. if not, it will pin it. otherwise it just moves on.
             // putting a check here prevents the "screen is now pinned" message-toast from showing
             // up every time the screen is attempted to be pinned.
             if (mActivityManager.getLockTaskModeState() != ActivityManager.LOCK_TASK_MODE_LOCKED) {
+                // pin-it!
                 startLockTask();
             }
         } else {
@@ -138,9 +133,6 @@ public class EsperKioskActivity extends AppCompatActivity {
             // case an error message should indicate to the user that pinning is not going to work.
             Log.e(TAG, getString(R.string.screen_pinning_disallowed));
         }
-
-        // pin it!
-        startLockTask();
     }
 
     /**
@@ -178,23 +170,6 @@ public class EsperKioskActivity extends AppCompatActivity {
             hideSystemUI();
         }
     }
-
-    /**
-     * This function will handle touch-events from this activity. In case there's a touch event
-     * any visible navigation, taskbar, action bars, etc. will be hidden immediately. The touch
-     * events will not be handled.
-     */
-    private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            ActionBar actionBar = getSupportActionBar();
-            if (actionBar != null) {
-                actionBar.hide();
-            }
-            hideSystemUI();
-            return false;
-        }
-    };
 
     /**
      * Helper function to hide the system UI elements
