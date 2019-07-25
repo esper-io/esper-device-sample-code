@@ -5,6 +5,9 @@ package io.esper.kioskapp;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.app.ActivityManager;
 import android.app.admin.DevicePolicyManager;
 import android.content.res.AssetManager;
@@ -17,6 +20,8 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -79,6 +84,25 @@ public class EsperKioskActivity extends AppCompatActivity {
         // set the main content view
         setContentView(R.layout.activity_fullscreen);
 
+        // set window flags so that this activity shows over the navigation/task bars
+        // without this the bars are not fully transparent.
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        );
+
+        // show andi, and populate the device id
+        showAnimatedAndi();
+        populateDeviceId();
+    }
+
+    /**
+     * This function loads Andi's image from assets and populated it into the designated ImageView.
+     * Furthermore it makes Andi slightly animated--after all a Kiosk should always attract
+     * customers, right?
+     *
+     */
+    private void showAnimatedAndi() {
         // load up Andi!
         ImageView andiLogoImageView = findViewById(R.id.andiLogoImageView);
         Bitmap bm = getAndiFromAssets();
@@ -86,8 +110,27 @@ public class EsperKioskActivity extends AppCompatActivity {
             andiLogoImageView.setImageBitmap(bm);
         }
 
-        // use the Esper Device SDK to get the device ID. Note that in case the device is not
-        // provisioned to the Esper backend, it's still OK to call it, but it will fail.
+        // animate Andi
+        ObjectAnimator scaleAnim =
+                ObjectAnimator.ofPropertyValuesHolder(
+                        andiLogoImageView,
+                        PropertyValuesHolder.ofFloat("scaleX", 1.1f),
+                        PropertyValuesHolder.ofFloat("scaleY", 1.1f)
+                );
+        scaleAnim.setDuration(1800);
+        scaleAnim.setRepeatCount(ObjectAnimator.INFINITE);
+        scaleAnim.setRepeatMode(ObjectAnimator.REVERSE);
+        scaleAnim.start();
+    }
+
+    /**
+     * This function makes use of the Esper Device SDK to get the device ID. Note that in case the
+     * device is not provisioned to your Esper Backend, it's still OK to call it, but it will fail
+     * with a known error. One great advantage of using the ID via the SDK is that now you can
+     * correlate activity that's going on, on this Kiosk from the backend via Esper's Cloud APIs.
+     * The key to tie the two together is the device ID!
+     */
+    private void populateDeviceId() {
         EsperDeviceSDK sdk = EsperDeviceSDK.getInstance(getApplicationContext(), new Handler(Looper.getMainLooper()));
         sdk.getEsperDeviceInfo(new EsperDeviceSDK.Callback<EsperDeviceInfo>() {
             @Override
@@ -104,7 +147,7 @@ public class EsperKioskActivity extends AppCompatActivity {
                 // EsperSDKNotFoundException is thrown. check for that explicitly.
                 if (!(t instanceof EsperSDKNotFoundException)) {
                     // note that the device id is already populated with a placeholder, so there's
-                    // no need to put a value in there in this case.
+                    // no need to put a value in there in the error case.
                     Log.e(TAG, getString(R.string.device_id_acquisition_failed), t);
                 }
             }
@@ -133,6 +176,8 @@ public class EsperKioskActivity extends AppCompatActivity {
             // case an error message should indicate to the user that pinning is not going to work.
             Log.e(TAG, getString(R.string.screen_pinning_disallowed));
         }
+
+        startLockTask();
     }
 
     /**
@@ -155,28 +200,6 @@ public class EsperKioskActivity extends AppCompatActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
-    }
-
-    /**
-     * As soon as the window gets focus, the navigation bar and the notification bar will be
-     * hidden.
-     *
-     * @param hasFocus true, if this window has focus
-     */
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
-            hideSystemUI();
-        }
-    }
-
-    /**
-     * Helper function to hide the system UI elements
-     */
-    private void hideSystemUI() {
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(HIDE_SYSTEM_UI_FLAGS);
     }
 
     /**
