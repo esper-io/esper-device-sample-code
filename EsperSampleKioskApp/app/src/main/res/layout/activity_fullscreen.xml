@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parentFullScreenLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".EsperKioskActivity">
+
+    <ImageView
+        android:id="@+id/andiLogoImageView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_weight=".60"
+        android:contentDescription="@string/andi_log_contdesc"
+        android:gravity="center"
+        android:padding="35dp" />
+
+    <TextView
+        android:id="@+id/helloWorldText"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".30"
+        android:gravity="center"
+        android:text="@string/hello_esper"
+        android:textColor="@color/colorPrimary"
+        android:textSize="50sp" />
+
+    <TextView
+        android:id="@+id/deviceId"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".10"
+        android:gravity="center"
+        android:text="@string/device_id_placeholder"
+        android:textColor="@color/colorPrimary"
+        android:textSize="25sp" />
+
+
+</LinearLayout>
