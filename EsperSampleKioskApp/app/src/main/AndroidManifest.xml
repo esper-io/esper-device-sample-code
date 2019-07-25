@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="io.esper.kioskapp">
 
     <application
@@ -9,6 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!-- Note the keepScreenOn parameter below; it will help keep the screen
+             ON when this activity is in the foreground -->
         <activity
             android:name=".EsperKioskActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -16,10 +20,13 @@
             android:keepScreenOn="true"
             android:theme="@style/FullscreenTheme">
             <intent-filter>
+                <!-- Don't add the HOME intent here, as the Esper Agent will launch this Kiosk app
+                     when it's set to "run on boot" in the template -->
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
