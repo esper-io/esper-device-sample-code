@@ -3,13 +3,8 @@
  */
 package io.esper.kioskapp;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
-import android.app.ActivityManager;
-import android.app.admin.DevicePolicyManager;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,14 +13,13 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -34,15 +28,14 @@ import io.esper.devicesdk.exceptions.EsperSDKNotFoundException;
 import io.esper.devicesdk.models.EsperDeviceInfo;
 
 /**
- *  This class implements a Kiosk-mode activity, that does the following main sub-activities within
- *  it:
- *
- *  1. Ensures the application starts in with a full-screen window (see FLAG_LAYOUT_NO_LIMITS below).
- *  2. Loads the image of Andi in the UI, and puts some animation on it :)
- *  3. Suppresses the ability of users to tinker with the volume buttons.
- *  4. Demonstrates the use of the Esper Android SDK to acquire the device ID in case
- *     this device is provisioned.
- *
+ * This class implements a Kiosk-mode activity, that does the following main sub-activities within
+ * it:
+ * <p>
+ * 1. Ensures the application starts in with a full-screen window (see FLAG_LAYOUT_NO_LIMITS below).
+ * 2. Loads the image of Andi in the UI, and puts some animation on it :)
+ * 3. Suppresses the ability of users to tinker with the volume buttons.
+ * 4. Demonstrates the use of the Esper Android SDK to acquire the device ID in case
+ * this device is provisioned.
  */
 public class EsperKioskActivity extends AppCompatActivity {
 
@@ -71,6 +64,14 @@ public class EsperKioskActivity extends AppCompatActivity {
         // show andi, and populate the device id
         showAnimatedAndi();
         populateDeviceId();
+    }
+
+
+    // Need to block back presses in order to avoid going into the
+    // parent locktask app if any
+    @Override
+    public void onBackPressed() {
+
     }
 
     /**
@@ -129,7 +130,7 @@ public class EsperKioskActivity extends AppCompatActivity {
                     public void onSuccess(EsperDeviceInfo response) {
                         // if the execution is here, an ID is available -- use it to populate the ID
                         // on the screen
-                        ((TextView)findViewById(R.id.deviceId)).setText(response.getDeviceId());
+                        ((TextView) findViewById(R.id.deviceId)).setText(response.getDeviceId());
                     }
 
                     @Override
@@ -155,13 +156,12 @@ public class EsperKioskActivity extends AppCompatActivity {
      * Android is the way to go--where you get low-level control of the device.
      *
      * @param keyCode The key code of the pressed key
-     * @param event The event for the key
-     *
+     * @param event   The event for the key
      * @return True if this is handled by this logic, false otherwise.
      */
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event){
-        if (keyCode == KeyEvent.KEYCODE_VOLUME_UP || keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_UP || keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
             Toast.makeText(
                     this,
                     getString(R.string.vol_butts_disabled),
