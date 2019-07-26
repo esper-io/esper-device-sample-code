@@ -45,7 +45,7 @@ public class EsperKioskActivity extends AppCompatActivity {
     // A tag to log with
     private final String TAG = AppCompatActivity.class.getSimpleName();
 
-    //
+    // A small delay after which Esper Device SDK calls will be made
     private final int SDK_INIT_DELAY_MS = 1000;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,13 +66,15 @@ public class EsperKioskActivity extends AppCompatActivity {
         populateDeviceId();
     }
 
-
-    // Need to block back presses in order to avoid going into the
-    // parent locktask app if any
+    /**
+     * When the Esper Agent comes up, it locks down the system for you. As a result there's no need
+     * to call APIs such as startLockTask() from this app, as the Agent has already locked it down
+     * for you. So in this case, by simply intercepting the "Back" key, and "swallowing" it prevents
+     * the user from getting away from this Activity. If you allow back-key presses, it will cause
+     * the Esper Agent to come up in the foreground, which in turn will re-spawn this Activity.
+     */
     @Override
-    public void onBackPressed() {
-
-    }
+    public void onBackPressed() {}
 
     /**
      * This function loads Andi's image from assets and populated it into the designated ImageView.
@@ -124,7 +126,7 @@ public class EsperKioskActivity extends AppCompatActivity {
                                 new Handler(Looper.getMainLooper())
                         );
 
-                // gran the device ID for population into the view
+                // grab the device ID for population into the view
                 sdk.getEsperDeviceInfo(new EsperDeviceSDK.Callback<EsperDeviceInfo>() {
                     @Override
                     public void onSuccess(EsperDeviceInfo response) {
@@ -157,7 +159,7 @@ public class EsperKioskActivity extends AppCompatActivity {
      *
      * @param keyCode The key code of the pressed key
      * @param event   The event for the key
-     * @return True if this is handled by this logic, false otherwise.
+     * @return True if this is handled by this logic, output of the parent's onKeyDown otherwise.
      */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -184,7 +186,7 @@ public class EsperKioskActivity extends AppCompatActivity {
             is = am.open(ANDI_LOGO_FILENAME);
             bitmap = BitmapFactory.decodeStream(is);
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e(TAG, getString(R.string.andi_logo_retrieval_failed), e);
         }
         return bitmap;
     }
