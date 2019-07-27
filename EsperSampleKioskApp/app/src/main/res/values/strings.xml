@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">EsperSampleKioskApp</string>
+    <string name="hello_esper">Hello, I am Andi from Esper!</string>
+    <string name="andi_log_contdesc">Hello, I am Andi from Esper!</string>
+    <string name="device_id_placeholder">---</string>
+    <string name="screen_pinning_disallowed">Screen-pinning is disallowed.</string>
+    <string name="vol_butts_disabled">Sorry, volume buttons are disabled on this device.</string>
+    <string name="device_id_acquisition_failed">Failed to acquire device ID.</string>
+    <string name="andi_logo_retrieval_failed">Failed to retrieve Andi :(</string>
+</resources>
