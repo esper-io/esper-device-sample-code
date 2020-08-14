@@ -1,0 +1,24 @@
+{
+  "command_type": "DEVICE",
+  "command": "UPDATE_DEVICE_CONFIG",
+  "command_args": {
+    "custom_settings_config": {
+      "scripts": [
+        {
+          "action": "LAUNCH",
+          "actionParams": {
+            "extras": {
+              "test": "missing componentName and intentAction parameters"
+            },
+            "flags": 268435456
+          }
+        }
+      ]
+    }
+  },
+  "devices": [
+    "0dbaf26e-7734-41d3-b506-7dd06e5c4bba",
+    "5d44866b-c9c1-43f7-ad4e-926de471cdd6"
+  ],
+  "device_type": "all"
+}

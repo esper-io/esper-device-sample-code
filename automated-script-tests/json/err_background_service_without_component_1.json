@@ -1,0 +1,26 @@
+{
+  "command_type": "DEVICE",
+  "command": "UPDATE_DEVICE_CONFIG",
+  "command_args": {
+    "custom_settings_config": {
+      "scripts": [
+        {
+          "action": "LAUNCH",
+          "actionParams": {
+            "intentAction": "com.example.scripttestapp.LAUNCH_ACTIVITY",
+            "extras": {
+              "test": "missing componentName when starting background service",
+              "version": 1
+            },
+            "serviceType": "BACKGROUND"
+          }
+        }
+      ]
+    }
+  },
+  "devices": [
+    "0dbaf26e-7734-41d3-b506-7dd06e5c4bba",
+    "5d44866b-c9c1-43f7-ad4e-926de471cdd6"
+  ],
+  "device_type": "all"
+}

@@ -1,0 +1,25 @@
+{
+  "command_type": "DEVICE",
+  "command": "UPDATE_DEVICE_CONFIG",
+  "command_args": {
+    "custom_settings_config": {
+      "scripts": [
+        {
+          "action": "LAUNCH",
+          "actionParams": {
+            "launchType": "BROADCAST",
+            "componentName": "com.example.scripttestapp/.TestBroadcastReceiver",
+            "intentAction": "com.example.scripttestapp.EXPLICIT_BROADCAST",
+            "extras": {
+              "test": "sent explicit broadcast intent with action"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "devices": [
+    "0dbaf26e-7734-41d3-b506-7dd06e5c4bba"
+  ],
+  "device_type": "all"
+}
