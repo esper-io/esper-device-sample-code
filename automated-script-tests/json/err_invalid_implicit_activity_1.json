@@ -7,7 +7,7 @@
         {
           "action": "LAUNCH",
           "actionParams": {
-            "intentAction": "com.example.scripttestapp.FAKE_ACTIVITY",
+            "intentAction": "com.example.esperscripttesterapp.FAKE_ACTIVITY",
             "extras": {
               "test": "implicit activity launch on fake activity",
               "version": 1
@@ -19,8 +19,7 @@
     }
   },
   "devices": [
-    "0dbaf26e-7734-41d3-b506-7dd06e5c4bba",
-    "5d44866b-c9c1-43f7-ad4e-926de471cdd6"
+    "0dbaf26e-7734-41d3-b506-7dd06e5c4bba"
   ],
   "device_type": "all"
 }

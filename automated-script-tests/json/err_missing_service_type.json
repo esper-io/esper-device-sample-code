@@ -8,7 +8,7 @@
           "action": "LAUNCH",
           "actionParams": {
             "launchType": "SERVICE",
-            "componentName": "com.example.scripttestapp/.TestBackgroundService",
+            "componentName": "com.example.esperscripttesterapp/.TestBackgroundService",
             "extras": {
               "test": "start service without type"
             }

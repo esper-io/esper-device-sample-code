@@ -8,7 +8,7 @@
           "action": "LAUNCH",
           "actionParams": {
             "launchType": "BROADCAST",
-            "componentName": "com.example.scripttestapp/.TestBroadcastReceiver",
+            "componentName": "com.example.esperscripttesterapp/.TestBroadcastReceiver",
             "extras": {
               "test": "sent explicit broadcast intent"
             }

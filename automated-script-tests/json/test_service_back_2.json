@@ -8,7 +8,7 @@
           "action": "LAUNCH",
           "actionParams": {
             "launchType": "SERVICE",
-            "componentName": "com.example.scripttestapp/.TestBackgroundService",
+            "componentName": "com.example.esperscripttesterapp/.TestBackgroundService",
             "extras": {
               "test": "start background service",
               "version": 2
@@ -20,8 +20,7 @@
     }
   },
   "devices": [
-    "0dbaf26e-7734-41d3-b506-7dd06e5c4bba",
-    "5d44866b-c9c1-43f7-ad4e-926de471cdd6"
+    "0dbaf26e-7734-41d3-b506-7dd06e5c4bba"
   ],
   "device_type": "all"
 }

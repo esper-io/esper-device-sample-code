@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">EsperScriptTesterApp</string>
+    <string name="title">Script Test App</string>
+    <string name="description">This app can be used to test the scripts namespace.</string>
+</resources>

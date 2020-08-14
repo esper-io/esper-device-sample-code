@@ -8,7 +8,7 @@
           "action": "LAUNCH",
           "actionParams": {
             "launchType": "WRONG",
-            "componentName": "com.example.scripttestapp/.MainActivity",
+            "componentName": "com.example.esperscripttesterapp/.MainActivity",
             "extras": {
               "test": "invalid launch type"
             }

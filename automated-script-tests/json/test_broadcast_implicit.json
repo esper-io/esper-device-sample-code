@@ -8,7 +8,7 @@
           "action": "LAUNCH",
           "actionParams": {
             "launchType": "BROADCAST",
-            "intentAction": "com.example.scripttestapp.IMPLICIT_BROADCAST",
+            "intentAction": "com.example.esperscripttesterapp.IMPLICIT_BROADCAST",
             "extras": {
               "test": "sent implicit broadcast intent"
             }

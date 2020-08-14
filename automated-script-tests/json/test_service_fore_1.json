@@ -7,7 +7,7 @@
         {
           "action": "LAUNCH",
           "actionParams": {
-            "componentName": "com.example.scripttestapp/.TestForegroundService",
+            "componentName": "com.example.esperscripttesterapp/.TestForegroundService",
             "extras": {
               "test": "start foreground service",
               "version": 1
@@ -19,8 +19,7 @@
     }
   },
   "devices": [
-    "0dbaf26e-7734-41d3-b506-7dd06e5c4bba",
-    "5d44866b-c9c1-43f7-ad4e-926de471cdd6"
+    "0dbaf26e-7734-41d3-b506-7dd06e5c4bba"
   ],
   "device_type": "all"
 }
