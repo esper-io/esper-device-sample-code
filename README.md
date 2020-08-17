@@ -17,10 +17,10 @@ Here is a list of included projects:
     - `MainActivity` which is launched when the app is first run, and is responsible for registering an implicit broadcast receiver for testing purposes. The receiver is registered on creation of the activity, so the test app must be launched first before testing sending an implicit broadcast.
 
     - `ImplicitActivity`, a blank activity which is used for testing launching with an implicit intent.
-        - declared in the manifest with an intent filter for the action `com.example.scripttestapp.LAUNCH_IMPLICIT_ACTIVITY`
+        - declared in the manifest with an intent filter for the action `com.example.esperscripttesterapp.LAUNCH_IMPLICIT_ACTIVITY`
 
     - `ExplicitActivity`, a blank activity which is used for testing launching with an explicit intent.
-        - declared in the manifest with an intent filter for the action `com.example.scripttestapp.LAUNCH_EXPLICIT_ACTIVITY`
+        - declared in the manifest with an intent filter for the action `com.example.esperscripttesterapp.LAUNCH_EXPLICIT_ACTIVITY`
 
     - `TestBackgroundService`, an example service which is used to test starting a background service.
 
@@ -33,7 +33,7 @@ Here is a list of included projects:
     All components (excluding the `MainActivity`) log to the console when they are successfully launched. The log contains the action and extras that were included with the intent that started the component. In addition, all log information is displayed in a toast message. Example log:
 
     ```
-    I/ImplicitActivity: Sucessfully started with action: [com.example.scripttestapp.LAUNCH_IMPLICIT_ACTIVITY] and extras: {test: implicit activity launch,version: 1}
+    I/ImplicitActivity: Sucessfully started with action: [com.example.esperscripttesterapp.LAUNCH_IMPLICIT_ACTIVITY] and extras: {test: implicit activity launch,version: 1}
     ```
     
 3.  automated-script-tests:
