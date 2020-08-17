@@ -1,0 +1,25 @@
+{
+  "command_type": "DEVICE",
+  "command": "UPDATE_DEVICE_CONFIG",
+  "command_args": {
+    "custom_settings_config": {
+      "scripts": [
+        {
+          "action": "LAUNCH",
+          "actionParams": {
+            "intentAction": "com.example.esperscripttesterapp.FAKE_ACTIVITY",
+            "extras": {
+              "test": "implicit activity launch on fake activity",
+              "version": 1
+            },
+            "flags": 268435456
+          }
+        }
+      ]
+    }
+  },
+  "devices": [
+    "0dbaf26e-7734-41d3-b506-7dd06e5c4bba"
+  ],
+  "device_type": "all"
+}
